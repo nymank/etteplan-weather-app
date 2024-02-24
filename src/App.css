@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  background-color: #F8F9FA;
+  margin: 0px;
+}
+
+.header {
+  font-size: xx-large;
+  color: #262626;
+  border-bottom: 1px solid #E6E6E6;
+  background-color: #FFFFFF;
+  padding-top: 10px;
+}
+

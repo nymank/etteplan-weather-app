@@ -1,0 +1,23 @@
+.city-name > p {
+    text-align: left;
+}
+
+.weather {
+    background-color: #FFFFFF;
+    margin: 20px;
+    border: 1px solid #E6E6E6;
+}
+
+.regular-text {
+    font-size: 19pt;
+    color: #262626;
+}
+
+.small-light {
+    font-size: 13pt;
+    color: #70757A;
+}
+
+p {
+    margin-bottom: 0px;
+}
