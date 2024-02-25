@@ -36,8 +36,11 @@ function App() {
 		<div className="App">
 			<Container fluid className="justify-content-md-center" style={{ padding: 0, paddingBottom: "40px" }}>
 				<Header title="Säätutka" />
-				<CitiesDropdown cities={cities} setCities={setCities} />
-				<WeatherContainer cities={cities} />
+				<Container fluid style={{maxWidth: "512px"}}>
+					<CitiesDropdown cities={cities} setCities={setCities} />
+					{/* {cities.map((city) => <WeatherContainer city={city} key={city.lat+city.lng} /> )} */}
+					<WeatherContainer city={cities[0].name} key={cities[0].name} />
+				</Container>
 			</Container>
 		</div>
 	)

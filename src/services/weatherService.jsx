@@ -1,6 +1,7 @@
 import axios from "axios"
 
 const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/3.0/onecall"
+const FORECAST_API_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
 
 /**
  * Get current weather https://openweathermap.org/api/one-call-3#current
@@ -15,4 +16,11 @@ const getWeather = (lat, lon) => {
 		.catch(err => err.response)
 }
 
-export default { getWeather }
+const getForecast = (lat, lon) => {
+	const URL = `${FORECAST_API_BASE_URL}?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
+	return axios.get(URL)
+		.then(res => res.data)
+		.catch(err => err.response)
+}
+
+export default { getWeather, getForecast }

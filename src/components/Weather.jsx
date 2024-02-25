@@ -23,15 +23,15 @@ const Weather = (props) => {
 
 	const [temp, setTemp] = useState(null)
 	const [windSpeed, setWindSpeed] = useState(null)
+	const [precipitation, setPercipitation] = useState(null)
+	const [humidity, setHumidity] = useState(null)
 	const [description, setDescription] = useState(null)
 	// https://openweathermap.org/weather-conditions#Icon-list
 	const [iconCode, setIconCode] = useState(null)
-	const [humidity, setHumidity] = useState(null)
 	const [currentDate, setCurrentDate] = useState(null)
 	const [currentTime, setCurrentTime] = useState(null)
 	const [statusText, setStatusText] = useState(null)
 	const [errorText, setErrorText] = useState(null)
-	const [precipitation, setPercipitation] = useState(null)
 
 	/**
 	 * Get weather from weatherService
@@ -44,6 +44,7 @@ const Weather = (props) => {
 				city["lng"]
 			)
 			.then((weatherData) => {
+				console.log(weatherData)
 				if (!weatherData || !weatherData.current) {
 					// in this case weather data should be an error obj
 					setStatusText("")

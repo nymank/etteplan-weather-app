@@ -1,16 +1,21 @@
-
 import Container from "react-bootstrap/Container"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import Weather from "./Weather"
+import Forecast from "./Forecast"
+import weatherService from "../services/weatherService"
 
 const WeatherContainer = (props) => {
-	const { cities } = props
+	const { city } = props
+
+	const [forecast, setForecast] = useState(null)
+
+
 
 	return (
-		<Container style={{maxWidth: "518px"}}>
-			{cities.map((city) => <Weather city={city} key={city.name} />)}
-			{/* <Weather city={cities[0]} /> */}
+		<Container style={{ maxWidth: "518px" }}>
+			<Weather city={city} key={city.name} />
+			<Forecast city={city} />
 		</Container>
 	)
 
@@ -18,13 +23,12 @@ const WeatherContainer = (props) => {
 
 
 WeatherContainer.propTypes = {
-	cities: PropTypes.arrayOf(
+	city:
 		PropTypes.shape({
 			name: PropTypes.string.isRequired,
 			lat: PropTypes.number.isRequired,
 			lng: PropTypes.number.isRequired,
 		}).isRequired
-	).isRequired,
 }
 
 export default WeatherContainer
