@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #F8F9FA;
-  margin: 0px;
+  color: #262626;
 }
 
 .header {
@@ -12,3 +12,16 @@
   padding-top: 10px;
 }
 
+.mainContainer {
+  padding: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+.regular-text {
+  font-size: 19pt;
+  color: #262626;
+  margin-bottom: 0;
+}

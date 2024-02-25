@@ -1,10 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-import "./App.css"
-import Weather from "./components/Weather"
+import "./style/App.css"
 import Container from "react-bootstrap/Container"
 import "bootstrap/dist/css/bootstrap.min.css"
-
+import Header from "./components/Header"
+import WeatherContainer from "./components/WeatherContainer"
 
 function App() {
 	const cities = [
@@ -31,16 +31,12 @@ function App() {
 	]
 
 	return (
-		<Container fluid className="App" style={{padding: "0px"}}>
-			<Container fluid className="header">
-				<p>Säätutka</p>
+		<div className="App">
+			<Container fluid className="justify-content-md-center" style={{ padding: 0, paddingBottom: "40px" }}>
+				<Header title="Säätutka" />
+				<WeatherContainer cities={cities} />
 			</Container>
-			<Container fluid>
-				{/* cities.map((city) => <Weather city={city} key={city.name} />) */}
-				<Weather city={cities[0]} />
-			</Container>
-
-		</Container>
+		</div>
 	)
 }
 

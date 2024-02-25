@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import weatherService from "../services/weatherService"
 import "../style/weatherStyle.css"
+import "../style/App.css"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container"
@@ -14,7 +15,12 @@ const Weather = (props) => {
 	const [windSpeed, setWindSpeed] = useState(null)
 	const [description, setDescription] = useState(null)
 	const [isFetching, setIsFetching] = useState(true)
+	// https://openweathermap.org/weather-conditions#Icon-list
 	const [iconCode, setIconCode] = useState(null)
+	const [humidity, setHumidity] = useState(null)
+	const [currentTimeUnixUTC, setCurrentTimeUnixUTC] = useState(null)
+	const [currentDate, setCurrentDate] = useState(null)
+	const [currentTime, setCurrentTime] = useState(null)
 
 	/**
 	 * Get weather from weatherService
@@ -30,6 +36,37 @@ const Weather = (props) => {
 			.catch((err) => console.error(err))
 	}
 
+	/**
+	 * set time state variables
+	 */
+	const setTime = (timestamp) => {
+		// convert Unix timestamp to milliseconds
+		const milliseconds = timestamp * 1000
+		const date = new Date(milliseconds)
+
+		// Format the time (HH:MM)
+		const hours = String(date.getHours()).padStart(2, "0")
+		const minutes = String(date.getMinutes()).padStart(2, "0")
+		const currentTime = `${hours}:${minutes}`
+
+		// Format the date (Month Day)
+		const day = date.getDate()
+		const daySuffix =
+			day === 1 || day === 21 || day === 31 ? "st" :
+				day === 2 || day === 22 ? "nd" :
+					day === 3 || day === 23 ? "rd" :
+						"th"
+		const options = { month: "long" }
+		const currentDate = `${date.toLocaleDateString("en-US", options)} ${day}${daySuffix}`
+
+		// Set the state variables
+		setCurrentTimeUnixUTC(timestamp)
+		setCurrentTime(currentTime)
+		setCurrentDate(currentDate)
+	}
+
+
+
 	useEffect(getWeather, [])
 
 	/**
@@ -37,101 +74,74 @@ const Weather = (props) => {
 	 * @param {Object} currWeatherData weather data that is returned by weatherService.getWeather https://openweathermap.org/api/one-call-3#history
 	 */
 	const updateWeather = (currWeatherData) => {
-		setTemp(currWeatherData.temp)
-		setWindSpeed(currWeatherData.wind_speed)
+		console.log(currWeatherData)
+		setTemp(Number(currWeatherData.temp).toFixed(0))
+		setWindSpeed(Number(currWeatherData.wind_speed).toFixed(1))
 		setIsFetching(false)
-		setIconCode(
-			convertIconCode(
-				currWeatherData.weather[0].description,
-				currWeatherData.dt < currWeatherData.sunset
-			)
-		)
 		// capitalize first letter
 		let desc = currWeatherData.weather[0].description
 		desc = `${desc[0].toUpperCase()}${desc.substring(1, desc.length)}`
 		setDescription(desc)
-	}
-
-	/**
-	 * @brief Get the day or night icon code part from https://openweathermap.org/weather-conditions#Icon-list
-	 * @param {String} description short description
-	 * @param {Boolean} isDay whether to return day or night version of icon code
-	 * @returns {String} icon code based on description
-	 */
-	const convertIconCode = (description, isDay) => {
-		const nORd = isDay ? "d" : "n"
-		switch (description) {
-			case "clear sky":
-				return `01${nORd}`
-			case "few clouds":
-				return `02${nORd}`
-			case "scattered clouds":
-				return `03${nORd}`
-			case "broken clouds":
-				return `04${nORd}`
-			case "shower rain":
-				return `09${nORd}`
-			case "rain":
-				return `10${nORd}`
-			case "thunderstorm":
-				return `11${nORd}`
-			case "snow":
-				return `13${nORd}`
-			case "light snow":
-				return `13${nORd}`
-			case "mist":
-				return `50${nORd}`
-			default:
-				return ""
-		}
+		setIconCode(currWeatherData.weather[0].icon)
+		setHumidity(currWeatherData.humidity)
+		setTime(currWeatherData.dt)
 	}
 
 	return (
 		<Container fluid className="weather">
 			{isFetching ?
-				<p>Fetching weather data...</p>
+				<Container>
+					<Container className="city-name">
+						<p className="regular-text" style={{ paddingTop: "15px", marginBottom: "0px" }}>{city.name}</p>
+						<p className="small-light">{description}</p>
+						<p>Fetching weather data...</p>
+					</Container>
+					<Container>
+						<p style={{ textAlign: "left", fontSize: "15pt" }}>May 5th</p>
+						<p className="small-light" style={{ textAlign: "left" }} >12:32</p>
+					</Container>
+				</Container>
 				:
 				<>
 					<Row>
 						<Col>
 							<Container className="city-name">
-								<p className="regular-text" style={{ paddingTop: "15px" }}>{city.name}</p>
+								<p className="regular-text">{city.name}</p>
 								<p className="small-light">{description}</p>
 							</Container>
 						</Col>
 						<Col>
-							<Row>
-								<Col>
-									<Container>
-										<img
-											src={`https://openweathermap.org/img/wn/${iconCode}@2x.png`}
-											alt=""
-											style={{ textAlign: "right" }}
-										/>
-									</Container>
-								</Col>
-								<Col>
-									<p style={{ fontSize: "26pt", textAlign: "left", color: "#262626" }}>{temp} °C</p>
-								</Col>
-							</Row>
+							<Container className="d-flex flex-row-reverse align-items-center">
+								<p className="regular-text" style={{ fontSize: "26pt", textAlign: "right", width: "63px"}}>{temp} °C</p>
+								<img
+									src={`https://openweathermap.org/img/wn/${iconCode}@2x.png`}
+									alt=""
+									width={80}
+									height={80}
+								/>
+
+							</Container>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
-							<Container>
-								<p style={{ textAlign: "left", fontSize: "15pt" }} className="regular-text">May 5th</p>
-								<p style={{ textAlign: "left" }} className="small-light">12:32</p>
+							<Container style={{ paddingTop: "20px" }}>
+								<p style={{ textAlign: "left", fontSize: "15pt", marginBottom: "0px" }}>{currentDate}</p>
+								<p className="small-light" style={{ textAlign: "left" }} >{currentTime}</p>
 							</Container>
 						</Col>
 						<Col>
-							<p style={{ textAlign: "right" }} className="small-light">Windspeed {windSpeed} m/s</p>
-							<p style={{ textAlign: "right" }} className="small-light">Windspeed {windSpeed} m/s</p>
+							<Container style={{ paddingTop: "20px" }}>
+								<p className="small-light" style={{ textAlign: "right", marginBottom: "0px" }}>Windspeed {windSpeed} m/s</p>
+								<p className="small-light" style={{ textAlign: "right", marginBottom: "0px" }}>Humidity {humidity} %</p>
+							</Container>
 						</Col>
 					</Row>
 				</>
 			}
 		</Container>
 	)
+
 }
 
 Weather.propTypes = {

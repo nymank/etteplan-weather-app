@@ -10,9 +10,9 @@ The app can be installed and run with Docker or directly with node. First clone 
 2. Run on the command line:  
 `cd <this-application-directory>`  
 `docker build -t etteplan-weather-app .`  
-`docker run -p 8085:85 etteplan-weather-app`  
+`docker run etteplan-weather-app`  
 
-### Without docker
+### Without docker using node
 1. Install nodeJS v18.17.1 or similiar  
 2. Navigate to application directory and run  
 `npm install && npm start`  
