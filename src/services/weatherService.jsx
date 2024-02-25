@@ -9,7 +9,6 @@ const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/3.0/onecall"
  * @returns {Object} API response data
  */
 const getWeather = (lat, lon) => {
-
 	const URL = `${WEATHER_API_BASE_URL}?lat=${lat}&lon=${lon}&exclude=hourly,daily,minutely,alerts&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
 	return axios.get(URL)
 		.then(res => res.data)

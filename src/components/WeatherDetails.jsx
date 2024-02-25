@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Container } from "react-bootstrap"
+import Container from "react-bootstrap/Container"
 
 
 const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
@@ -8,7 +8,7 @@ const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
 		<Container className="weather-details">
 			<p className="small-light" style={{ marginBottom: "0px" }}>Windspeed {windSpeed} m/s</p>
 			<p className="small-light" style={{ marginBottom: "0px" }}>Humidity {humidity} %</p>
-			<p className="small-light" style={{ marginBottom: "0px" }}>Precipitation (3h) {precipitation ? precipitation : 0} mm</p>
+			<p className="small-light" style={{ marginBottom: "0px" }}>Precipitation (3h) {Number(precipitation)} mm</p>
 		</Container>
 	)
 }
@@ -16,7 +16,10 @@ const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
 WeatherDetails.propTypes = {
 	windSpeed: PropTypes.string,
 	humidity: PropTypes.number,
-	precipitation: PropTypes.number
+	precipitation: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	])
 }
 
 export default WeatherDetails

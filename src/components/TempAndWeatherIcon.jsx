@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Container } from "react-bootstrap" // Assuming you're using react-bootstrap for the Container component
-import Temperature from "./Temperature" // Assuming the Temperature component is in a separate file
-import WeatherIcon from "./WeatherIcon" // Assuming the WeatherIcon component is in a separate file
+import Container from "react-bootstrap/Container"
+import Temperature from "./Temperature"
+import WeatherIcon from "./WeatherIcon"
 
 const TempAndWeatherIcon = ({ temp, iconCode }) => {
 	return (

@@ -25,3 +25,16 @@ p {
   color: #262626;
   margin-bottom: 0;
 }
+
+.error {
+  color: rgb(238, 57, 57)
+}
+
+.city-dd-toggle {
+  width: 518px;
+  background-color: white;
+  border: 1px solid #000000;
+  color: #262626;
+  text-align: left;
+  padding: 20px;
+}

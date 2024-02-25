@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Container } from "react-bootstrap" // Assuming you're using react-bootstrap for the Container component
+import Container from "react-bootstrap/Container"
 
 const NameAndDesc = ({ name, description }) => {
 	return (

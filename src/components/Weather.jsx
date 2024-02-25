@@ -12,6 +12,11 @@ import TempAndWeatherIcon from "./TempAndWeatherIcon"
 import NameAndDesc from "./NameAndDesc"
 import Error from "./Error"
 
+/**
+ * Weather: a component for displaying the weather in one geographical location or 'city'. Shows current weather and forecast.
+ * @param {*} props city 
+ * @returns 
+ */
 const Weather = (props) => {
 
 	const { city } = props
@@ -26,7 +31,7 @@ const Weather = (props) => {
 	const [currentTime, setCurrentTime] = useState(null)
 	const [statusText, setStatusText] = useState(null)
 	const [errorText, setErrorText] = useState(null)
-	const [percipitation, setPercipitation] = useState(null)
+	const [precipitation, setPercipitation] = useState(null)
 
 	/**
 	 * Get weather from weatherService
@@ -39,11 +44,12 @@ const Weather = (props) => {
 				city["lng"]
 			)
 			.then((weatherData) => {
-				if( !weatherData || !weatherData.current ) {
+				if (!weatherData || !weatherData.current) {
 					// in this case weather data should be an error obj
 					setStatusText("")
 					setErrorText(`Error: request for weather data failed (status: ${weatherData.status})`)
 				} else {
+					// succesfully fetched
 					updateWeather(weatherData.current)
 				}
 			})
@@ -87,10 +93,10 @@ const Weather = (props) => {
 
 	/**
 	 * @brief Set weather state variables based on weather data from API
-	 * @param {Object} currWeatherData weather data that is returned by weatherService.getWeather https://openweathermap.org/api/one-call-3#history
+	 * @param {Object} currWeatherData weather data that is returned by weatherService.getWeather https://openweathermap.org/api/one-call-3
 	 */
 	const updateWeather = (currWeatherData) => {
-		if( !currWeatherData ) {
+		if (!currWeatherData) {
 			setStatusText("Could not get weather for " + city.name)
 			return
 		}
@@ -104,52 +110,59 @@ const Weather = (props) => {
 		setIconCode(currWeatherData.weather[0].icon)
 		setHumidity(currWeatherData.humidity)
 		setTime(currWeatherData.dt)
+		// if there is percipitation, it can be rain or snow, and for 1h or 3h
 		const rainOrSnow = currWeatherData.rain ? currWeatherData.rain : currWeatherData.snow
 		let percipitationCopy
-		if ( rainOrSnow ) {
+		if (rainOrSnow) {
 			percipitationCopy = rainOrSnow["3h"] ? rainOrSnow["3h"] : rainOrSnow["1h"]
 		} else {
 			percipitationCopy = 0
 		}
-		setPercipitation(percipitationCopy)
-
+		setPercipitation(percipitationCopy ? percipitationCopy.toFixed(1) : 0) // use one decimal when percipitation is not 0 of undef etc.
 	}
 
-	if( errorText ) {
-		return(
-			<Container fluid className="weather">
-				<NameAndDesc name={city.name} description={description} />
-				<Error errorText={errorText} />
-			</Container>
+	if (!city) {
+		return (
+			<></>
 		)
 	}
 
 	return (
 		<Container fluid className="weather">
-			{statusText ?
-				<Container>
-					<NameAndDesc name={city.name} description={description} />
-					<p className="regular-text">{statusText}</p>
-				</Container>
-				:
-				<>
-					<Row>
-						<Col>
+			{
+				// check error
+				errorText ?
+					<>
+						<NameAndDesc name={city.name} description={description} />
+						<Error errorText={errorText} />
+					</>
+					:
+					// inform user when fetching etc.
+					statusText ?
+						<>
 							<NameAndDesc name={city.name} description={description} />
-						</Col>
-						<Col>
-							<TempAndWeatherIcon temp={temp} iconCode={iconCode} />
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<DateAndTimeStacked currentDate={currentDate} currentTime={currentTime} />
-						</Col>
-						<Col>
-							<WeatherDetails windSpeed={windSpeed} humidity={humidity} percipitation={percipitation} />
-						</Col>
-					</Row>
-				</>
+							<p className="small-light">{statusText}</p>
+						</>
+						:
+						// No errors and fetching done
+						<>
+							<Row>
+								<Col>
+									<NameAndDesc name={city.name} description={description} />
+								</Col>
+								<Col>
+									<TempAndWeatherIcon temp={temp} iconCode={iconCode} />
+								</Col>
+							</Row>
+							<Row>
+								<Col>
+									<DateAndTimeStacked currentDate={currentDate} currentTime={currentTime} />
+								</Col>
+								<Col>
+									<WeatherDetails windSpeed={windSpeed} humidity={humidity} precipitation={precipitation} />
+								</Col>
+							</Row>
+						</>
 			}
 		</Container>
 	)

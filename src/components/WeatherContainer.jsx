@@ -9,8 +9,8 @@ const WeatherContainer = (props) => {
 
 	return (
 		<Container style={{maxWidth: "518px"}}>
-			{/*cities.map((city) => <Weather city={city} key={city.name} />)*/}
-			<Weather city={cities[0]} />
+			{cities.map((city) => <Weather city={city} key={city.name} />)}
+			{/* <Weather city={cities[0]} /> */}
 		</Container>
 	)
 
