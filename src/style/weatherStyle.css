@@ -1,6 +1,7 @@
 .city-name > p {
     text-align: left;
     margin-bottom: "0px";
+    min-width: 120px;
 }
 
 .weather {
@@ -10,8 +11,23 @@
     border: 1px solid #E6E6E6;
     padding: 20px;
 }
+
 .small-light {
     font-size: 13pt;
     color: #70757A;
     margin-bottom: "0px";
+}
+
+.weather-details {
+    padding-top: 20px;
+    min-width: 220px;
+}
+
+.weather-details > p {
+    text-align: right;
+    margin-bottom: "0px";
+}
+
+.error {
+    color: rgb(238, 57, 57)
 }

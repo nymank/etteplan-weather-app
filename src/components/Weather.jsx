@@ -6,6 +6,11 @@ import "../style/App.css"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container"
+import DateAndTimeStacked from "./DateAndTimeStacked"
+import WeatherDetails from "./WeatherDetails"
+import TempAndWeatherIcon from "./TempAndWeatherIcon"
+import NameAndDesc from "./NameAndDesc"
+import Error from "./Error"
 
 const Weather = (props) => {
 
@@ -14,26 +19,38 @@ const Weather = (props) => {
 	const [temp, setTemp] = useState(null)
 	const [windSpeed, setWindSpeed] = useState(null)
 	const [description, setDescription] = useState(null)
-	const [isFetching, setIsFetching] = useState(true)
 	// https://openweathermap.org/weather-conditions#Icon-list
 	const [iconCode, setIconCode] = useState(null)
 	const [humidity, setHumidity] = useState(null)
-	const [currentTimeUnixUTC, setCurrentTimeUnixUTC] = useState(null)
 	const [currentDate, setCurrentDate] = useState(null)
 	const [currentTime, setCurrentTime] = useState(null)
+	const [statusText, setStatusText] = useState(null)
+	const [errorText, setErrorText] = useState(null)
+	const [percipitation, setPercipitation] = useState(null)
 
 	/**
 	 * Get weather from weatherService
 	 */
 	const getWeather = () => {
-		setIsFetching(true)
+		setStatusText("Fetching weather data...")
 		weatherService
 			.getWeather(
 				city["lat"],
 				city["lng"]
 			)
-			.then((weatherData) => updateWeather(weatherData.current))
-			.catch((err) => console.error(err))
+			.then((weatherData) => {
+				if( !weatherData || !weatherData.current ) {
+					// in this case weather data should be an error obj
+					setStatusText("")
+					setErrorText(`Error: request for weather data failed (status: ${weatherData.status})`)
+				} else {
+					updateWeather(weatherData.current)
+				}
+			})
+			.catch((err) => {
+				setStatusText("")
+				setErrorText("Error: request for weather data failed")
+			})
 	}
 
 	/**
@@ -60,7 +77,6 @@ const Weather = (props) => {
 		const currentDate = `${date.toLocaleDateString("en-US", options)} ${day}${daySuffix}`
 
 		// Set the state variables
-		setCurrentTimeUnixUTC(timestamp)
 		setCurrentTime(currentTime)
 		setCurrentDate(currentDate)
 	}
@@ -74,10 +90,13 @@ const Weather = (props) => {
 	 * @param {Object} currWeatherData weather data that is returned by weatherService.getWeather https://openweathermap.org/api/one-call-3#history
 	 */
 	const updateWeather = (currWeatherData) => {
-		console.log(currWeatherData)
+		if( !currWeatherData ) {
+			setStatusText("Could not get weather for " + city.name)
+			return
+		}
 		setTemp(Number(currWeatherData.temp).toFixed(0))
 		setWindSpeed(Number(currWeatherData.wind_speed).toFixed(1))
-		setIsFetching(false)
+		setStatusText(null)
 		// capitalize first letter
 		let desc = currWeatherData.weather[0].description
 		desc = `${desc[0].toUpperCase()}${desc.substring(1, desc.length)}`
@@ -85,56 +104,49 @@ const Weather = (props) => {
 		setIconCode(currWeatherData.weather[0].icon)
 		setHumidity(currWeatherData.humidity)
 		setTime(currWeatherData.dt)
+		const rainOrSnow = currWeatherData.rain ? currWeatherData.rain : currWeatherData.snow
+		let percipitationCopy
+		if ( rainOrSnow ) {
+			percipitationCopy = rainOrSnow["3h"] ? rainOrSnow["3h"] : rainOrSnow["1h"]
+		} else {
+			percipitationCopy = 0
+		}
+		setPercipitation(percipitationCopy)
+
+	}
+
+	if( errorText ) {
+		return(
+			<Container fluid className="weather">
+				<NameAndDesc name={city.name} description={description} />
+				<Error errorText={errorText} />
+			</Container>
+		)
 	}
 
 	return (
 		<Container fluid className="weather">
-			{isFetching ?
+			{statusText ?
 				<Container>
-					<Container className="city-name">
-						<p className="regular-text" style={{ paddingTop: "15px", marginBottom: "0px" }}>{city.name}</p>
-						<p className="small-light">{description}</p>
-						<p>Fetching weather data...</p>
-					</Container>
-					<Container>
-						<p style={{ textAlign: "left", fontSize: "15pt" }}>May 5th</p>
-						<p className="small-light" style={{ textAlign: "left" }} >12:32</p>
-					</Container>
+					<NameAndDesc name={city.name} description={description} />
+					<p className="regular-text">{statusText}</p>
 				</Container>
 				:
 				<>
 					<Row>
 						<Col>
-							<Container className="city-name">
-								<p className="regular-text">{city.name}</p>
-								<p className="small-light">{description}</p>
-							</Container>
+							<NameAndDesc name={city.name} description={description} />
 						</Col>
 						<Col>
-							<Container className="d-flex flex-row-reverse align-items-center">
-								<p className="regular-text" style={{ fontSize: "26pt", textAlign: "right", width: "63px"}}>{temp} °C</p>
-								<img
-									src={`https://openweathermap.org/img/wn/${iconCode}@2x.png`}
-									alt=""
-									width={80}
-									height={80}
-								/>
-
-							</Container>
+							<TempAndWeatherIcon temp={temp} iconCode={iconCode} />
 						</Col>
 					</Row>
 					<Row>
 						<Col>
-							<Container style={{ paddingTop: "20px" }}>
-								<p style={{ textAlign: "left", fontSize: "15pt", marginBottom: "0px" }}>{currentDate}</p>
-								<p className="small-light" style={{ textAlign: "left" }} >{currentTime}</p>
-							</Container>
+							<DateAndTimeStacked currentDate={currentDate} currentTime={currentTime} />
 						</Col>
 						<Col>
-							<Container style={{ paddingTop: "20px" }}>
-								<p className="small-light" style={{ textAlign: "right", marginBottom: "0px" }}>Windspeed {windSpeed} m/s</p>
-								<p className="small-light" style={{ textAlign: "right", marginBottom: "0px" }}>Humidity {humidity} %</p>
-							</Container>
+							<WeatherDetails windSpeed={windSpeed} humidity={humidity} percipitation={percipitation} />
 						</Col>
 					</Row>
 				</>
