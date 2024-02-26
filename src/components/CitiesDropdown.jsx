@@ -38,22 +38,41 @@ const CitiesDropdown = ({ cities, setCities }) => {
 					className="city-dd-toggle"
 					variant="light"
 					style={{
-						display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%",
-						textAlign: "left", backgroundColor: "white", border: "solid 1px #E6E6E6", padding: "15px"
+						display: "flex",
+						justifyContent: "space-between",
+						alignItems: "center",
+						width: "100%",
+						textAlign: "left",
+						backgroundColor: "white",
+						border: "solid 1px #E6E6E6",
+						padding: "15px"
 					}}
 				>
 					<span style={{ flexGrow: 1 }}>{selectedCity}</span>
 				</Dropdown.Toggle>
-				<Dropdown.Menu>
+				<Dropdown.Menu style={{ width: "100%" }}>
 					{/* Default title, DD item */}
-					<Dropdown.Item style={{ textAlign: "left", width: "100%" }} onClick={resetDD}>{DEFAULT_DD_TITLE}</Dropdown.Item>
+					<Dropdown.Item
+						style={{ textAlign: "left", minWidth: "100%" }}
+						onClick={resetDD}
+					>
+						{DEFAULT_DD_TITLE}
+					</Dropdown.Item>
 					{/* Rest of the Dropdown items. Using lat + lng for unique key prop */}
-					{allCities.map((city) => <Dropdown.Item style={{ width: "100%" }} key={city.name + String(city.lng) + String(city.lat)}
-						onClick={() => handleSelection(city.name)}>{city.name}</Dropdown.Item>)}
+					{allCities.map((city) => (
+						<Dropdown.Item
+							style={{ minWidth: "100%" }}
+							key={city.name + String(city.lng) + String(city.lat)}
+							onClick={() => handleSelection(city.name)}
+						>
+							{city.name}
+						</Dropdown.Item>
+					))}
 				</Dropdown.Menu>
 			</Dropdown>
 		</Container>
 	)
+
 }
 
 CitiesDropdown.propTypes = {
