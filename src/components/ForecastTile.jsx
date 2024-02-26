@@ -6,8 +6,6 @@ import "../style/forecastStyle.css"
 
 /**
  * Tile that shows forecast based on props.
- * @props see propTypes
- * @returns 
  */
 const ForecastTile = ({ temp, windSpeed, precipitation, humidity, time, iconCode }) => {
 	return (
