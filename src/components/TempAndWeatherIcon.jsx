@@ -4,6 +4,9 @@ import Container from "react-bootstrap/Container"
 import Temperature from "./Temperature"
 import WeatherIcon from "./WeatherIcon"
 
+/**
+ * Temperature in celsius grouped with a weather icon
+ */
 const TempAndWeatherIcon = ({ temp, iconCode }) => {
 	return (
 		<Container className="d-flex flex-row-reverse align-items-center">
@@ -14,7 +17,7 @@ const TempAndWeatherIcon = ({ temp, iconCode }) => {
 }
 
 TempAndWeatherIcon.propTypes = {
-	temp: PropTypes.string,
+	temp: PropTypes.number,
 	iconCode: PropTypes.string
 }
 

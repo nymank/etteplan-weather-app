@@ -2,6 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import Container from "react-bootstrap/Container"
 
+/**
+ * City name and short description of weather
+ */
 const NameAndDesc = ({ name, description }) => {
 	return (
 		<Container className="city-name">

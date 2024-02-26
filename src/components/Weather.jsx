@@ -53,7 +53,7 @@ const Weather = (props) => {
 					updateWeather(weatherData.current)
 				}
 			})
-			.catch((err) => {
+			.catch(() => {
 				setStatusText("")
 				setErrorText("Error: request for weather data failed")
 			})

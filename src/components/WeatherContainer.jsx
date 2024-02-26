@@ -6,7 +6,7 @@ import Forecast from "./Forecast"
 
 /**
  * Container that renders current weather and forecast for city.
- * @param {Object} city {lat, lng}
+ * @param {Object} city {name, lat, lng}
  */
 const WeatherContainer = ({ city }) => {
 

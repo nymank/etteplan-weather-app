@@ -5,6 +5,10 @@ import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import "../style/App.css"
 
+
+/**
+ * Dropdown component that filters which cities are shown using setCities.
+ */
 const CitiesDropdown = ({ cities, setCities }) => {
 
 	const DEFAULT_DD_TITLE = "Kaikki kaupungit"
@@ -16,7 +20,7 @@ const CitiesDropdown = ({ cities, setCities }) => {
 		setSelectedCity(name)
 	}
 
-	// set all city names for dropdown
+	// set all city names first time
 	useEffect(() => {
 		setAllCities(cities)
 	}, [])
@@ -44,7 +48,7 @@ const CitiesDropdown = ({ cities, setCities }) => {
 					{/* Default title, DD item */}
 					<Dropdown.Item style={{ textAlign: "left", width: "100%" }} onClick={resetDD}>{DEFAULT_DD_TITLE}</Dropdown.Item>
 					{/* Rest of the Dropdown items. Using lat + lng for unique key prop */}
-					{allCities.map((city) => <Dropdown.Item style={{ width: "100%" }} key={String(city.lng) + String(city.lat)}
+					{allCities.map((city) => <Dropdown.Item style={{ width: "100%" }} key={city.name + String(city.lng) + String(city.lat)}
 						onClick={() => handleSelection(city.name)}>{city.name}</Dropdown.Item>)}
 				</Dropdown.Menu>
 			</Dropdown>

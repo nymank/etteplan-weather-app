@@ -2,10 +2,10 @@ import React from "react"
 import Container from "react-bootstrap/Container"
 import PropTypes from "prop-types"
 
-
-
-const DateAndTimeStacked = (props) => {
-	const { currentDate, currentTime } = props
+/**
+ * Date and time
+ */
+const DateAndTimeStacked = ({ currentDate, currentTime }) => {
 	return (
 		<Container style={{ paddingTop: "20px", minWidth: "160px" }}>
 			<p style={{ textAlign: "left", fontSize: "15pt", marginBottom: "0px" }}>{currentDate}</p>

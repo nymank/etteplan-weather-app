@@ -1,8 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+/**
+ * Render a weather icon based on iconCode, see https://openweathermap.org/weather-conditions#Icon-list
+ */
 const WeatherIcon = ({ iconCode }) => {
-
+	if (!iconCode) return <></>
 	return (
 		iconCode ?
 			<img

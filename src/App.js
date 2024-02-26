@@ -8,6 +8,9 @@ import CitiesDropdown from "./components/CitiesDropdown"
 import React, { useState } from "react"
 import MobileTopBar from "./components/MobileTopBar"
 
+/**
+ * Weather radar app, that displays information about cities' current weather and forecast.
+ */
 function App() {
 	const [cities, setCities] = useState([
 		{

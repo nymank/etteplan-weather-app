@@ -22,7 +22,7 @@ const Forecast = ({ city, tiles }) => {
 
 	// fetch forecast or use cache
 	useEffect(() => {
-		let cachedForecasts = sessionStorage.getItem("forecasts")
+		let cachedForecasts = sessionStorage.getItem(`${city.name}${city.lat}${city.lng}`)
 		cachedForecasts = cachedForecasts ? JSON.parse(cachedForecasts) : cachedForecasts
 		const threeHoursInSecs = 60 * 60 * 3
 		let forecastStartTimeDiff = 0
@@ -43,7 +43,8 @@ const Forecast = ({ city, tiles }) => {
 					} else if (data.list) {
 						const first = data.list.slice(0, tiles)
 						setForecast(first)
-						sessionStorage.setItem("forecasts", JSON.stringify(first))
+						// use city name, lat and lng for unique sessionStorage key
+						sessionStorage.setItem(`${city.name}${city.lat}${city.lng}`, JSON.stringify(first))
 					} else {
 						setError("Could not get forecast for " + city.name)
 					}
@@ -58,7 +59,7 @@ const Forecast = ({ city, tiles }) => {
 	}
 
 	if (!forecast) {
-		return <p className="small-light">Fetching forecast </p>
+		return <p className="small-light">Fetching forecast ...</p>
 	}
 
 	if (!tiles) {
@@ -66,6 +67,7 @@ const Forecast = ({ city, tiles }) => {
 	}
 
 	return (
+		// forecast tiles
 		<Container>
 			<Row>
 				{forecast.slice(0, tiles).map((f) => {

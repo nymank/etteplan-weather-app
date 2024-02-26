@@ -4,15 +4,16 @@ import React from "react"
 import PropTypes from "prop-types"
 import "../style/headerStyle.css"
 
-const Header = (props) => {
-	const { title } = props
-
+/**
+ * App title
+ * @param {String} title
+ */
+const Header = ( { title } ) => {
 	return (
 		<Container fluid className="header">
 			<p>{title}</p>
 		</Container>
 	)
-
 }
 
 Header.propTypes = {

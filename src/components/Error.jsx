@@ -1,6 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+/**
+ * Generic error text component
+ * @param {String} errorText
+ * @returns 
+ */
 const Error = ({ errorText }) => {
 	return (
 		<p className="error">{errorText}</p>

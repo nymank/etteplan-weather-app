@@ -5,12 +5,12 @@ import "../style/mobileTopBarStyle.css"
 
 /**
  * Top bar with wifi, battery-%, time etc. that is displayed only on mobile screen size devices.
- * 
  */
 const MobileTopBar = () => {
 	const [currentTime, setCurrentTime] = useState(null)
 	const [isVisible, setIsVisible] = useState(true)
 
+	// update time every 5s
 	useEffect(() => {
 		getCurrentTime()
 		setInterval(getCurrentTime, 5000)
@@ -24,6 +24,7 @@ const MobileTopBar = () => {
 		}))
 	}
 
+	// display based on screen size
 	useEffect(() => {
 		function handleResize() {
 			setIsVisible(window.innerWidth <= 1200)
@@ -35,6 +36,7 @@ const MobileTopBar = () => {
 	}, [])
 
 	if (!isVisible) return null
+	
 	return (
 		<Container fluid className="mobile-top-bar">
 			<div className="left-section">

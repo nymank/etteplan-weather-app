@@ -2,7 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import Container from "react-bootstrap/Container"
 
-
+/**
+ * Display details specified by props with light text.
+ */
 const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
 	return (
 		<Container className="weather-details">
@@ -14,7 +16,7 @@ const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
 }
 
 WeatherDetails.propTypes = {
-	windSpeed: PropTypes.string,
+	windSpeed: PropTypes.number,
 	humidity: PropTypes.number,
 	precipitation: PropTypes.oneOfType([
 		PropTypes.number,

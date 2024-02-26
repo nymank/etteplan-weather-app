@@ -2,6 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import "../style/App.css"
 
+/**
+ * Temperature text
+ */
 const Temperature = ({ temp, fontSize }) => {
 	return (
 		<p className="regular-text"
