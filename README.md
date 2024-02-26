@@ -31,6 +31,6 @@ The container can be stopped with
 ## Tests
 
 To run automated Selenium IDE tests for the app:
-1. Install Selenium (IDE) https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started#installation
+1. Install Selenium https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started#installation
 2. Run selenium tests located in ./selenium-tests/etteplan-weather-app.side
 - this can be done with the Browser IDE or CLI
