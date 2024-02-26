@@ -14,6 +14,7 @@ Then build and run the application with either Node or Docker:
 `npm install && npm start`  
 
 ### Docker
+If using node doesn't work, the problem could be OS related. Docker should work the same on all operating systems.
 
 1. Start Docker daemon (e.g. Docker desktop)
 - Docker can be installed here: https://docs.docker.com/get-docker/
@@ -27,6 +28,7 @@ Building takes a while, something like 2-3 minutes.
 The container can be stopped with  
 `docker stop container-id`  
 
+I used Docker Desktop version 4.27.2 & Docker Engine v25.0.3  
 
 ## Tests
 
