@@ -13,13 +13,6 @@ const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
 	)
 }
 
-/*
-style={{ marginBottom: "0px" }
-style={{ marginBottom: "0px" }
-style={{ marginBottom: "0px" }
-
-*/
-
 WeatherDetails.propTypes = {
 	windSpeed: PropTypes.string,
 	humidity: PropTypes.number,

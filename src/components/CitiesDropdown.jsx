@@ -44,7 +44,7 @@ const CitiesDropdown = ({ cities, setCities }) => {
 					{/* Default title, DD item */}
 					<Dropdown.Item style={{ textAlign: "left", width: "100%" }} onClick={resetDD}>{DEFAULT_DD_TITLE}</Dropdown.Item>
 					{/* Rest of the Dropdown items. Using lat + lng for unique key prop */}
-					{allCities.map((city) => <Dropdown.Item style={{ width: "100%" }} key={String(city.lng)+String(city.lat)}
+					{allCities.map((city) => <Dropdown.Item style={{ width: "100%" }} key={String(city.lng) + String(city.lat)}
 						onClick={() => handleSelection(city.name)}>{city.name}</Dropdown.Item>)}
 				</Dropdown.Menu>
 			</Dropdown>

@@ -1,24 +1,21 @@
 import Container from "react-bootstrap/Container"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import Weather from "./Weather"
 import Forecast from "./Forecast"
-import weatherService from "../services/weatherService"
 
-const WeatherContainer = (props) => {
-	const { city } = props
-
-	const [forecast, setForecast] = useState(null)
-
-
+/**
+ * Container that renders current weather and forecast for city.
+ * @param {Object} city {lat, lng}
+ */
+const WeatherContainer = ({ city }) => {
 
 	return (
 		<Container style={{ maxWidth: "518px" }}>
-			<Weather city={city}/>
-			<Forecast city={city} />
+			<Weather city={city} />
+			<Forecast city={city} tiles={5} />
 		</Container>
 	)
-
 }
 
 

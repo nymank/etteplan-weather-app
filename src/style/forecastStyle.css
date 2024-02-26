@@ -1,6 +1,6 @@
 .forecast-tile {
 	border: 1px solid #E6E6E6;
-    border-radius: 10px;
+	border-radius: 10px;
 	background-color: white;
 	padding-top: 10px;
 	width: 80px;
@@ -8,7 +8,7 @@
 
 .forecast-col {
 	padding: 5px;
-	max-width: 100px;
+	max-width: 92px;
 }
 
 .forecast-details {

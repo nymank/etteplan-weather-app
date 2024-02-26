@@ -6,239 +6,72 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import "../style/forecastStyle.css"
-
-const TEMPLATE_DATA =
-{
-	"cod": "200",
-	"message": 0,
-	"cnt": 40,
-	"list": [
-		{
-			"dt": 1708948800,
-			"main": {
-				"temp": 0.38,
-				"feels_like": -1.58,
-				"temp_min": 0.38,
-				"temp_max": 0.92,
-				"pressure": 1012,
-				"sea_level": 1012,
-				"grnd_level": 999,
-				"humidity": 99,
-				"temp_kf": -0.54
-			},
-			"weather": [
-				{
-					"id": 804,
-					"main": "Clouds",
-					"description": "overcast clouds",
-					"icon": "04d"
-				}
-			],
-			"clouds": {
-				"all": 100
-			},
-			"wind": {
-				"speed": 1.67,
-				"deg": 115,
-				"gust": 2.73
-			},
-			"visibility": 4423,
-			"pop": 0,
-			"sys": {
-				"pod": "d"
-			},
-			"dt_txt": "2024-02-26 12:00:00"
-		},
-		{
-			"dt": 1708959600,
-			"snow": {
-				"3h": 3.5
-			},
-			"main": {
-				"temp": 0.41,
-				"feels_like": 0.41,
-				"temp_min": 0.41,
-				"temp_max": 0.56,
-				"pressure": 1013,
-				"sea_level": 1013,
-				"grnd_level": 999,
-				"humidity": 99,
-				"temp_kf": -0.15
-			},
-			"weather": [
-				{
-					"id": 804,
-					"main": "Clouds",
-					"description": "overcast clouds",
-					"icon": "04d"
-				}
-			],
-			"clouds": {
-				"all": 100
-			},
-			"wind": {
-				"speed": 1.27,
-				"deg": 60,
-				"gust": 1.94
-			},
-			"visibility": 10000,
-			"pop": 0,
-			"sys": {
-				"pod": "d"
-			},
-			"dt_txt": "2024-02-26 15:00:00"
-		},
-		{
-			"dt": 1708970400,
-			"main": {
-				"temp": 0.23,
-				"feels_like": 0.23,
-				"temp_min": 0.23,
-				"temp_max": 0.23,
-				"pressure": 1013,
-				"sea_level": 1013,
-				"grnd_level": 1000,
-				"humidity": 99,
-				"temp_kf": 0
-			},
-			"weather": [
-				{
-					"id": 804,
-					"main": "Clouds",
-					"description": "overcast clouds",
-					"icon": "04n"
-				}
-			],
-			"clouds": {
-				"all": 100
-			},
-			"wind": {
-				"speed": 0.62,
-				"deg": 40,
-				"gust": 0.63
-			},
-			"visibility": 10000,
-			"pop": 0.05,
-			"sys": {
-				"pod": "n"
-			},
-			"dt_txt": "2024-02-26 18:00:00"
-		},
-		{
-			"dt": 1708981200,
-			"main": {
-				"temp": 0.23,
-				"feels_like": 0.23,
-				"temp_min": 0.23,
-				"temp_max": 0.23,
-				"pressure": 1015,
-				"sea_level": 1015,
-				"grnd_level": 1001,
-				"humidity": 99,
-				"temp_kf": 0
-			},
-			"weather": [
-				{
-					"id": 804,
-					"main": "Clouds",
-					"description": "overcast clouds",
-					"icon": "04n"
-				}
-			],
-			"clouds": {
-				"all": 100
-			},
-			"wind": {
-				"speed": 0.67,
-				"deg": 346,
-				"gust": 0.64
-			},
-			"visibility": 10000,
-			"pop": 0.28,
-			"sys": {
-				"pod": "n"
-			},
-			"dt_txt": "2024-02-26 21:00:00"
-		},
-		{
-			"dt": 1708992000,
-			"main": {
-				"temp": -4.5,
-				"feels_like": 0.11,
-				"temp_min": 0.11,
-				"temp_max": 0.11,
-				"pressure": 1016,
-				"sea_level": 1016,
-				"grnd_level": 1002,
-				"humidity": 98,
-				"temp_kf": 0
-			},
-			"weather": [
-				{
-					"id": 804,
-					"main": "Clouds",
-					"description": "overcast clouds",
-					"icon": "04n"
-				}
-			],
-			"clouds": {
-				"all": 100
-			},
-			"wind": {
-				"speed": 1.23,
-				"deg": 306,
-				"gust": 2.42
-			},
-			"visibility": 10000,
-			"pop": 0.17,
-			"sys": {
-				"pod": "n"
-			},
-			"dt_txt": "2024-02-27 00:00:00",
-			"rain": {
-				"3h": 0.26
-			},
-		}
-	]
-}
-
-
-
+import Error from "./Error"
 
 /**
- * Render 'tiles' forecast tiles for city
- * @param {object} city
+ * Render 'tiles' forecast tiles for city. Forecast is fetched for every three hours.
+ * @param {object} city lat, lng
+ * @param {Number} tiles optional tile count
  */
 const Forecast = ({ city, tiles }) => {
 
 	const [forecast, setForecast] = useState([])
+	const [error, setError] = useState("")
 
+	const DEFAULT_TILES = 5
+
+	// fetch forecast or use cache
 	useEffect(() => {
-		// weatherService.getForecast(city.lat, city.lng)
-		// 	.then((data) => {
-		// 		if (data.list) {
-		// 			// updateForecast(data.list.slice(0, 5))
-		// 			// updateForecast(data)
-		// 		}
-		// 	})
-		updateForecast(TEMPLATE_DATA.list.slice(0, 5))
+		let cachedForecasts = sessionStorage.getItem("forecasts")
+		cachedForecasts = cachedForecasts ? JSON.parse(cachedForecasts) : cachedForecasts
+		const threeHoursInSecs = 60 * 60 * 3
+		let forecastStartTimeDiff = 0
+		if (cachedForecasts) {
+			// calculate if cache is more than 3 hours old
+			const first = cachedForecasts[0].dt_txt
+			const dateparts = first.split(" ")[0].split("-").map(p => Number(p))
+			const timeparts = first.split(" ")[1].split(":").map(p => Number(p))
+			forecastStartTimeDiff = Date.UTC(dateparts[0], dateparts[1] - 1, dateparts[2], timeparts[0]) - Date.now()
+		}
+		if (!cachedForecasts || forecastStartTimeDiff / 1000 > threeHoursInSecs) {
+			setError("")
+			// no cached forecast or cached forecast start is over 3h ago, let's get a new one
+			weatherService.getForecast(city.lat, city.lng)
+				.then((data) => {
+					if (!data || !data.list) {
+						setError("Could not get forecast for " + city.name)
+					} else if (data.list) {
+						const first = data.list.slice(0, tiles)
+						setForecast(first)
+						sessionStorage.setItem("forecasts", JSON.stringify(first))
+					} else {
+						setError("Could not get forecast for " + city.name)
+					}
+				})
+		} else {
+			setForecast(cachedForecasts)
+		}
 	}, [])
 
-	const updateForecast = (forecastData) => {
-		setForecast(forecastData)
+	if (error) {
+		return <Error errorText={error} />
 	}
 
 	if (!forecast) {
 		return <p className="small-light">Fetching forecast </p>
 	}
 
+	if (!tiles) {
+		tiles = DEFAULT_TILES
+	}
+
 	return (
 		<Container>
 			<Row>
-				{forecast.map((f, index) => {
+				{forecast.slice(0, tiles).map((f) => {
 					const timeparts = f.dt_txt.split(" ")[1].split(":")
 					const time = `${timeparts[0]}:${timeparts[1]}`
-					// if there is percipitation, it can be rain or snow. For forecasts only 3h
+					// if there is percipitation, it can be rain or snow. For forecasts API only 3h percipitation is available.
 					const rainOrSnow = f.rain ? f.rain : f.snow
 					const prec = rainOrSnow ? rainOrSnow["3h"] : 0
 					return (

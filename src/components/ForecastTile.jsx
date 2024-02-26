@@ -9,12 +9,12 @@ const ForecastTile = ({ temp, windSpeed, precipitation, humidity, time, iconCode
 	return (
 		<div className="forecast-tile">
 			<p className="small-light">{time}</p>
-			<WeatherIcon iconCode={iconCode}/>
+			<WeatherIcon iconCode={iconCode} />
 			<Temperature fontSize="15pt" temp={Number(temp.toFixed(0))} />
 			<div className="forecast-details">
-				<p className="small-light" style={{fontSize: "10pt"}}>{windSpeed} m/s</p>
-				<p className="small-light" style={{fontSize: "10pt"}}>{precipitation} mm</p>
-				<p className="small-light" style={{fontSize: "10pt"}}>{humidity} %</p>
+				<p className="small-light" style={{ fontSize: "10pt" }}>{windSpeed} m/s</p>
+				<p className="small-light" style={{ fontSize: "10pt" }}>{precipitation} mm</p>
+				<p className="small-light" style={{ fontSize: "10pt" }}>{humidity} %</p>
 			</div>
 		</div>
 	)

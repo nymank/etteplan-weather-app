@@ -13,8 +13,8 @@ import NameAndDesc from "./NameAndDesc"
 import Error from "./Error"
 
 /**
- * Weather: a component for displaying the weather in one geographical location or 'city'. Shows current weather and forecast.
- * @param {*} props city 
+ * Weather: a component for displaying the current weather in one geographical location or 'city'.
+ * @param {Object} props city {name, lat, lng} see PropTypes below component
  * @returns 
  */
 const Weather = (props) => {
@@ -38,49 +38,25 @@ const Weather = (props) => {
 	 */
 	const getWeather = () => {
 		setStatusText("Fetching weather data...")
-		const TEMPLATE_DATA_W = {
-			"dt": 1708940207,
-			"sunrise": 1708925890,
-			"sunset": 1708961875,
-			"temp": 0.11,
-			"feels_like": -3.45,
-			"pressure": 1012,
-			"humidity": 100,
-			"dew_point": 0.11,
-			"uvi": 0.48,
-			"clouds": 100,
-			"visibility": 600,
-			"wind_speed": 3.09,
-			"wind_deg": 100,
-			"weather": [
-				{
-					"id": 741,
-					"main": "Fog",
-					"description": "fog",
-					"icon": "50d"
+		weatherService
+			.getWeather(
+				city["lat"],
+				city["lng"]
+			)
+			.then((weatherData) => {
+				if (!weatherData || !weatherData.current) {
+					// in this case weather data should be an error obj
+					setStatusText("")
+					setErrorText(`Error: request for weather data failed (status: ${weatherData.status})`)
+				} else {
+					// succesfully fetched
+					updateWeather(weatherData.current)
 				}
-			]
-		}
-		updateWeather(TEMPLATE_DATA_W)
-		// weatherService
-		// 	.getWeather(
-		// 		city["lat"],
-		// 		city["lng"]
-		// 	)
-		// 	.then((weatherData) => {
-		// 		if (!weatherData || !weatherData.current) {
-		// 			// in this case weather data should be an error obj
-		// 			setStatusText("")
-		// 			setErrorText(`Error: request for weather data failed (status: ${weatherData.status})`)
-		// 		} else {
-		// 			// succesfully fetched
-		// 			updateWeather(weatherData.current)
-		// 		}
-		// 	})
-		// 	.catch((err) => {
-		// 		setStatusText("")
-		// 		setErrorText("Error: request for weather data failed")
-		// 	})
+			})
+			.catch((err) => {
+				setStatusText("")
+				setErrorText("Error: request for weather data failed")
+			})
 	}
 
 	/**
@@ -142,12 +118,12 @@ const Weather = (props) => {
 		} else {
 			percipitationCopy = 0
 		}
-		setPercipitation(percipitationCopy ? percipitationCopy.toFixed(1) : 0) // use one decimal when percipitation is not 0 of undef etc.
+		setPercipitation(percipitationCopy ? percipitationCopy.toFixed(1) : 0) // use zero decimals when percipitation is not 0 of undef etc.
 	}
 
 	if (!city) {
 		return (
-			<></>
+			<Error errorText={`Could not get current weather for ${city.name}`} />
 		)
 	}
 
