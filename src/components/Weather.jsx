@@ -25,13 +25,13 @@ const Weather = (props) => {
 	const [windSpeed, setWindSpeed] = useState(null)
 	const [precipitation, setPercipitation] = useState(null)
 	const [humidity, setHumidity] = useState(null)
-	const [description, setDescription] = useState(null)
+	const [description, setDescription] = useState("")
 	// https://openweathermap.org/weather-conditions#Icon-list
-	const [iconCode, setIconCode] = useState(null)
-	const [currentDate, setCurrentDate] = useState(null)
-	const [currentTime, setCurrentTime] = useState(null)
-	const [statusText, setStatusText] = useState(null)
-	const [errorText, setErrorText] = useState(null)
+	const [iconCode, setIconCode] = useState("")
+	const [currentDate, setCurrentDate] = useState("")
+	const [currentTime, setCurrentTime] = useState("")
+	const [statusText, setStatusText] = useState("")
+	const [errorText, setErrorText] = useState("")
 
 	/**
 	 * Get weather from weatherService
@@ -123,7 +123,7 @@ const Weather = (props) => {
 
 	if (!city) {
 		return (
-			<Error errorText={`Could not get current weather for ${city.name}`} />
+			<Error errorText={"Could not get current weather"} />
 		)
 	}
 
