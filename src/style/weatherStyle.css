@@ -9,13 +9,14 @@
     margin-top: 30px;
     margin-bottom: 30px;
     border: 1px solid #E6E6E6;
+    border-radius: 10px;
     padding: 20px;
 }
 
 .small-light {
     font-size: 13pt;
     color: #70757A;
-    margin-bottom: "0px";
+    margin: 0;
 }
 
 .weather-details {

@@ -6,12 +6,19 @@ import Container from "react-bootstrap/Container"
 const WeatherDetails = ({ windSpeed, humidity, precipitation }) => {
 	return (
 		<Container className="weather-details">
-			<p className="small-light" style={{ marginBottom: "0px" }}>Windspeed {windSpeed} m/s</p>
-			<p className="small-light" style={{ marginBottom: "0px" }}>Humidity {humidity} %</p>
-			<p className="small-light" style={{ marginBottom: "0px" }}>Precipitation (3h) {Number(precipitation)} mm</p>
+			<p className="small-light">Windspeed {windSpeed} m/s</p>
+			<p className="small-light">Humidity {humidity} %</p>
+			<p className="small-light">Precipitation (3h) {Number(precipitation)} mm</p>
 		</Container>
 	)
 }
+
+/*
+style={{ marginBottom: "0px" }
+style={{ marginBottom: "0px" }
+style={{ marginBottom: "0px" }
+
+*/
 
 WeatherDetails.propTypes = {
 	windSpeed: PropTypes.string,

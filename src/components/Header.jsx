@@ -2,7 +2,7 @@
 import Container from "react-bootstrap/Container"
 import React from "react"
 import PropTypes from "prop-types"
-
+import "../style/headerStyle.css"
 
 const Header = (props) => {
 	const { title } = props

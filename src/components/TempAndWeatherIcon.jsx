@@ -8,7 +8,7 @@ const TempAndWeatherIcon = ({ temp, iconCode }) => {
 	return (
 		<Container className="d-flex flex-row-reverse align-items-center">
 			<WeatherIcon iconCode={iconCode} />
-			<Temperature temp={temp} />
+			<Temperature temp={temp} fontSize="26pt" />
 		</Container>
 	)
 }

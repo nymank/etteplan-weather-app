@@ -6,7 +6,7 @@ import Header from "./components/Header"
 import WeatherContainer from "./components/WeatherContainer"
 import CitiesDropdown from "./components/CitiesDropdown"
 import React, { useState } from "react"
-
+import MobileTopBar from "./components/MobileTopBar"
 
 function App() {
 	const [cities, setCities] = useState([
@@ -35,11 +35,11 @@ function App() {
 	return (
 		<div className="App">
 			<Container fluid className="justify-content-md-center" style={{ padding: 0, paddingBottom: "40px" }}>
+				<MobileTopBar />
 				<Header title="Säätutka" />
 				<Container fluid style={{maxWidth: "512px"}}>
 					<CitiesDropdown cities={cities} setCities={setCities} />
-					{/* {cities.map((city) => <WeatherContainer city={city} key={city.lat+city.lng} /> )} */}
-					<WeatherContainer city={cities[0].name} key={cities[0].name} />
+					{cities.map((city) => <WeatherContainer city={city} key={`${city.name}${city.lat+city.lng}`} /> )}
 				</Container>
 			</Container>
 		</div>

@@ -38,26 +38,49 @@ const Weather = (props) => {
 	 */
 	const getWeather = () => {
 		setStatusText("Fetching weather data...")
-		weatherService
-			.getWeather(
-				city["lat"],
-				city["lng"]
-			)
-			.then((weatherData) => {
-				console.log(weatherData)
-				if (!weatherData || !weatherData.current) {
-					// in this case weather data should be an error obj
-					setStatusText("")
-					setErrorText(`Error: request for weather data failed (status: ${weatherData.status})`)
-				} else {
-					// succesfully fetched
-					updateWeather(weatherData.current)
+		const TEMPLATE_DATA_W = {
+			"dt": 1708940207,
+			"sunrise": 1708925890,
+			"sunset": 1708961875,
+			"temp": 0.11,
+			"feels_like": -3.45,
+			"pressure": 1012,
+			"humidity": 100,
+			"dew_point": 0.11,
+			"uvi": 0.48,
+			"clouds": 100,
+			"visibility": 600,
+			"wind_speed": 3.09,
+			"wind_deg": 100,
+			"weather": [
+				{
+					"id": 741,
+					"main": "Fog",
+					"description": "fog",
+					"icon": "50d"
 				}
-			})
-			.catch((err) => {
-				setStatusText("")
-				setErrorText("Error: request for weather data failed")
-			})
+			]
+		}
+		updateWeather(TEMPLATE_DATA_W)
+		// weatherService
+		// 	.getWeather(
+		// 		city["lat"],
+		// 		city["lng"]
+		// 	)
+		// 	.then((weatherData) => {
+		// 		if (!weatherData || !weatherData.current) {
+		// 			// in this case weather data should be an error obj
+		// 			setStatusText("")
+		// 			setErrorText(`Error: request for weather data failed (status: ${weatherData.status})`)
+		// 		} else {
+		// 			// succesfully fetched
+		// 			updateWeather(weatherData.current)
+		// 		}
+		// 	})
+		// 	.catch((err) => {
+		// 		setStatusText("")
+		// 		setErrorText("Error: request for weather data failed")
+		// 	})
 	}
 
 	/**
@@ -101,8 +124,8 @@ const Weather = (props) => {
 			setStatusText("Could not get weather for " + city.name)
 			return
 		}
-		setTemp(Number(currWeatherData.temp).toFixed(0))
-		setWindSpeed(Number(currWeatherData.wind_speed).toFixed(1))
+		setTemp(Number(currWeatherData.temp.toFixed(0)))
+		setWindSpeed(Number(currWeatherData.wind_speed.toFixed(1)))
 		setStatusText(null)
 		// capitalize first letter
 		let desc = currWeatherData.weather[0].description

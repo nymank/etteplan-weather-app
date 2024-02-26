@@ -1,14 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
+import "../style/App.css"
 
-const Temperature = ({ temp }) => {
+const Temperature = ({ temp, fontSize }) => {
 	return (
-		<p className="regular-text" style={{ fontSize: "26pt", textAlign: "right", width: "63px" }}>{temp} °C</p>
+		<p className="regular-text"
+			style={{ fontSize: fontSize, textAlign: "right", width: "63px" }}>
+			{temp ? temp : temp * -1} °C {/* in case temp is '-0' make it 0 */}
+		</p>
 	)
 }
 
 Temperature.propTypes = {
-	temp: PropTypes.string
+	temp: PropTypes.number,
+	fontSize: PropTypes.string
 }
 
 export default Temperature

@@ -1,0 +1,17 @@
+.forecast-tile {
+	border: 1px solid #E6E6E6;
+    border-radius: 10px;
+	background-color: white;
+	padding-top: 10px;
+}
+
+.forecast-col {
+	padding: 5px;
+}
+
+.forecast-details {
+	background-color: #E5F6FD;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+}

@@ -14,7 +14,7 @@ const WeatherContainer = (props) => {
 
 	return (
 		<Container style={{ maxWidth: "518px" }}>
-			<Weather city={city} key={city.name} />
+			<Weather city={city}/>
 			<Forecast city={city} />
 		</Container>
 	)
