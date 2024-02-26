@@ -15,7 +15,6 @@ import Error from "./Error"
 /**
  * Weather: a component for displaying the current weather in one geographical location or 'city'.
  * @param {Object} props city {name, lat, lng} see PropTypes below component
- * @returns 
  */
 const Weather = (props) => {
 
