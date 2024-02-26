@@ -1,0 +1,28 @@
+.mobile-top-bar {
+	background-color: #00a5e5;
+	color: #ffffff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
+	max-height: 30px;
+}
+
+.left-section {
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+}
+
+.right-section {
+	display: flex;
+	align-items: center;
+	padding-right: 10px;
+}
+
+
+.left-section > *, .right-section > * {
+	margin: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+}

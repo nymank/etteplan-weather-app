@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
 import Container from "react-bootstrap/Container"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
 import { BsWifi, BsBatteryFull } from "react-icons/bs"
-import "../style/headerStyle.css"
+import "../style/mobileTopBarStyle.css"
+
 
 const MobileTopBar = () => {
 
@@ -12,7 +11,7 @@ const MobileTopBar = () => {
 			<div className="left-section">
 				<p>Scetch</p>
 				<BsWifi />
-				<p>.....</p>
+				<p style={{fontSize: "12pt"}}>•••••</p>
 			</div>
 			<div className="right-section">
 				<BsBatteryFull />
