@@ -1,6 +1,6 @@
 # Weather app
 Weather application that shows weather data for the locations of Etteplan offices in Finland for the current day. Current weather and forecast is displayed.  
-Created using ReactJS and https://openweathermap.org/api by Kalle Nyman 2024.  
+Created using ReactJS, react-bootstrap and https://openweathermap.org/api by Kalle Nyman 2024.  
 
 ## Installation
 First clone the repository with `git clone`. The weather API key should be specified in a .env file at the project root like this:  
