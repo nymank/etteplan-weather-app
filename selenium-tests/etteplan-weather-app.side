@@ -1,0 +1,379 @@
+{
+  "id": "e7aeaead-b498-41a1-b2e7-27fb67970938",
+  "version": "2.0",
+  "name": "etteplan-weather-app",
+  "url": "http://localhost:3000",
+  "tests": [{
+    "id": "99669050-6a1a-4f35-aa25-001e15eece0e",
+    "name": "smoke",
+    "commands": [{
+      "id": "10b12d9d-26ef-436c-88af-e1d4ee1c53ce",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e52eebd9-d7d5-48c2-90c7-3eb4983c14db",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "41338adc-34e6-48c4-bfb3-56ccb1e762c8",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cfc91944-8849-40d0-9a89-453e380aa96e",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf6b481e-37b5-4e46-ba5d-897687d5f179",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eab666ee-e6dd-4705-aea3-4d4527b3651b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Tampere",
+      "targets": [
+        ["linkText=Tampere", "linkText"],
+        ["css=.dropdown-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Tampere')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Tampere')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d836059-beb4-46e4-9fe7-6c00f05bc841",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Tampere')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0228d9c-70d2-41d2-89f2-06137261ea8e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kaikki kaupungit",
+      "targets": [
+        ["linkText=Kaikki kaupungit", "linkText"],
+        ["css=.dropdown-item:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Kaikki kaupungit')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "87454fc6-b5c6-4c42-ad97-799ca6a19151",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae916e9d-2c72-49e0-82c4-6ed9af4860a3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Jyväskylä",
+      "targets": [
+        ["linkText=Jyväskylä", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Jyväskylä')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Jyväskylä')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbd7a9fe-c8ed-4232-8a97-2eccd9a3adba",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Jyväskylä')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a2f82dd-2192-479c-ad06-92f465ac744c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kuopio",
+      "targets": [
+        ["linkText=Kuopio", "linkText"],
+        ["css=.dropdown-item:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'Kuopio')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a[4]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[4]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Kuopio')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7e30835-47a7-40ef-8652-3116e74b9e3f",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kuopio')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1922b13-da7a-4b99-bfdd-9a1dfa06ba4c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Espoo",
+      "targets": [
+        ["linkText=Espoo", "linkText"],
+        ["css=.dropdown-item:nth-child(5)", "css:finder"],
+        ["xpath=//a[contains(text(),'Espoo')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a[5]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//a[5]", "xpath:position"],
+        ["xpath=//a[contains(.,'Espoo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ae83474-1164-425d-be1f-fb20ea5e626b",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Espoo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8002ef81-0f84-44ac-9673-d9f3995b2d2a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kaikki kaupungit",
+      "targets": [
+        ["linkText=Kaikki kaupungit", "linkText"],
+        ["css=.dropdown-item:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Kaikki kaupungit')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "77833f12-0571-480d-9431-d1418ac2c32b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.justify-content-md-center",
+      "targets": [
+        ["css=.justify-content-md-center", "css:finder"],
+        ["xpath=//div[@id='root']/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c9d9ca7-1387-4db4-ba87-b4d30f80b04f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.justify-content-md-center",
+      "targets": [
+        ["css=.justify-content-md-center", "css:finder"],
+        ["xpath=//div[@id='root']/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "72867eb5-f1a8-43ab-9d00-bf889294fb02",
+    "name": "Filter results",
+    "commands": [{
+      "id": "bb4b107b-c572-4a8e-9369-3d0b0037928e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "814d9082-4e1e-47d8-8e1a-ef462562bd47",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1848x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bf177ff8-f864-4f8f-9c99-c05925b3c0cd",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e88f981e-0c28-456c-8bbd-93d00df241e0",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4534d84-c420-4880-9e30-dd883a9e81bd",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "60a5597b-77e0-4bc4-8350-83e459b0f2bd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Tampere",
+      "targets": [
+        ["linkText=Tampere", "linkText"],
+        ["css=.dropdown-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Tampere')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/a[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Tampere')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "c82122e0-d52f-4cc2-9b5c-0710846574f8",
+    "name": "Responsiveness",
+    "commands": [{
+      "id": "4cc7f574-775b-4313-8688-f81d685e4464",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d997b6e2-b500-4b28-a445-dde5087edc07",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "462x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8bf640d3-b99f-4d91-aa88-551f91295588",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mobile-top-bar",
+      "targets": [
+        ["css=.mobile-top-bar", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ae90bc5-099c-4995-ba5c-ab36b0e671b7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container:nth-child(2) > .weather",
+      "targets": [
+        ["css=.container:nth-child(2) > .weather", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52889c1f-e810-47a3-928c-c2b138e81088",
+      "comment": "",
+      "command": "click",
+      "target": "css=span",
+      "targets": [
+        ["css=span", "css:finder"],
+        ["xpath=//button[@id='dropdown-basic']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kaikki kaupungit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9832e65-dc0e-4c5e-9639-9a907775f5f9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Tampere",
+      "targets": [
+        ["linkText=Tampere", "linkText"],
+        ["css=.dropdown-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Tampere')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div/div/a[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Tampere')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5a189817-4da8-4f63-953f-79782aee8ec4",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["99669050-6a1a-4f35-aa25-001e15eece0e"]
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}
