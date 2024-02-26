@@ -6,8 +6,6 @@ Created using ReactJS, react-bootstrap and https://openweathermap.org/api by Kal
 First clone the repository with `git clone`. The weather API key should be specified in a .env file at the project root like this:  
 `REACT_APP_WEATHER_API_KEY="key-here"`  
 
-Dotenv: https://www.npmjs.com/package/dotenv  
-
 Then build and run the application with either Node or Docker:  
 
 ### Node
@@ -28,3 +26,11 @@ Building takes a while, something like 2-3 minutes.
 
 The container can be stopped with  
 `docker stop container-id`  
+
+
+## Tests
+
+To run automated Selenium IDE tests for the app:
+1. Install Selenium (IDE) https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started#installation
+2. Run selenium tests located in ./selenium-tests/etteplan-weather-app.side
+- this can be done with the Browser IDE or CLI
