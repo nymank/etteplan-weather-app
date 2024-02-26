@@ -8,6 +8,7 @@
 
 .forecast-col {
 	padding: 5px;
+	max-width: 100px;
 }
 
 .forecast-details {

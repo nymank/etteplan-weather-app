@@ -244,6 +244,7 @@ const Forecast = ({ city, tiles }) => {
 					return (
 						<Col key={`${city.name}${time}`} className="forecast-col">
 							<ForecastTile
+								key={`${city.name}${time}`}
 								temp={f.main.temp}
 								windSpeed={f.wind.speed}
 								humidity={f.main.humidity}
