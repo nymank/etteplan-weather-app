@@ -122,7 +122,7 @@ const Weather = (props) => {
 
 	if (!city) {
 		return (
-			<Error errorText={"Could not get current weather"} />
+			<Error errorText="Could not get current weather" />
 		)
 	}
 
